@@ -26,8 +26,8 @@ public class CallTask implements Callable<String> {
     public static void main(String[] args) {
         ExecutorService executorService = Executors.newCachedThreadPool();
         try {
-            CallTask task = new CallTask();
             for (int i=0;i<100;i++) {
+                CallTask task = new CallTask();
                 Future<String > future = executorService.submit(task);
                 String result = future.get();
 //                System.out.println(result);
@@ -37,6 +37,5 @@ public class CallTask implements Callable<String> {
         } catch (ExecutionException e) {
             e.printStackTrace();
         }
-
     }
 }
