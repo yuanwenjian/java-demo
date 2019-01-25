@@ -1,19 +1,17 @@
-package com.yuanwj.mybatisdemo.mapper;
+package com.yuanwj.mybatisdemo.service;
 
 import com.yuanwj.mybatisdemo.model.PhoneImei;
-import org.apache.ibatis.annotations.Mapper;
 
 import java.util.List;
 
 /**
  * Created with Intellij IDEA
  * Author: xuziling
- * Date:  2019/1/22
+ * Date:  2019/1/25
  * Description:
  */
-
-public interface PhoneImerMapper {
-    PhoneImei findById(Long imeiId);
-
+public interface PhoneImeiService {
     List<PhoneImei> findAll();
+
+    PhoneImei findById(Long id);
 }

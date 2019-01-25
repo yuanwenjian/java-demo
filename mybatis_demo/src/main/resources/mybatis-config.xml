@@ -15,10 +15,16 @@
         PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-config.dtd">
 <configuration>
+    <settings>
+        <setting name="mapUnderscoreToCamelCase" value="true"/>
+    </settings>
     <typeAliases>
         <package name="com.yuanwj.mybatisdemo.model"/>
     </typeAliases>
-    <mappers>
-        <mapper resource="mapper/PhoneImerMapper.xml"/>
-    </mappers>
+
+    <!--<mappers>-->
+
+        <!--<mapper resource="mapper/.xml"/>-->
+    <!--</mappers>-->
+
 </configuration>

@@ -15,7 +15,12 @@
         PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.yuanwj.mybatisdemo.mapper.PhoneImerMapper">
-    <select id="findById" resultMap="com.yuanwj.mybatisdemo.model.PhoneImei" parameterType="long">
+    <select id="findById" resultType="com.yuanwj.mybatisdemo.model.PhoneImei" parameterType="long">
         SELECT * FROM wms_phone_imei where imei_id=#{id}
     </select>
+
+    <select id="findAll" resultType="com.yuanwj.mybatisdemo.model.PhoneImei">
+        SELECT * FROM wms_phone_imei
+    </select>
+
 </mapper>
