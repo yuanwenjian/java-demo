@@ -1,14 +1,19 @@
 spring:
     datasource:
-        url: jdbc:mysql://192.168.1.58:3306/edb_a20000
-        username: root
-        password: Server-wms654321
-mybatis:
-    config-location: classpath:mybatis-config.xml
-    type-aliases-package: com.yuanwj.mybatisdemo.model
+        master:
+            url: jdbc:mysql://192.168.1.58:3306/edb_a20000?useSSL=false
+            username: root
+            password: Server-wms654321
+        slave:
+            url: jdbc:mysql://192.168.1.58:3306/edb_b20000?useSSL=false
+            username: root
+            password: Server-wms654321
+#mybatis:
+#    config-location: classpath:mybatis-config.xml
+#    type-aliases-package: com.yuanwj.mybatisdemo.model
 #    configuration:
 #        map-underscore-to-camel-case: true
-    mapper-locations: classpath:mapper/*.xml
+#    mapper-locations: classpath:mapper/**/*.xml
 
 server:
     port: 8081

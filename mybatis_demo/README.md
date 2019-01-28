@@ -14,3 +14,7 @@ mybatis:
 ## 指定mapper接口
 1. 在单个文件使用@Mapper注解
 2. 使用@MapperScan()指定mapper包所在路径
+
+## springboot+ mybatis 配置多数据源
+
+具体实现 config/*DataSourceConfig代码所示

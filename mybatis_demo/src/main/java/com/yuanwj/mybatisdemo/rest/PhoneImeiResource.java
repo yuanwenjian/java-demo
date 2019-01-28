@@ -1,5 +1,7 @@
 package com.yuanwj.mybatisdemo.rest;
 
+import com.yuanwj.mybatisdemo.archive.model.ArchiveOrderBox;
+import com.yuanwj.mybatisdemo.archive.service.ArchiveOrderBoxService;
 import com.yuanwj.mybatisdemo.model.PhoneImei;
 import com.yuanwj.mybatisdemo.service.PhoneImeiService;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,21 +18,29 @@ import java.util.List;
  * Description:
  */
 @RestController
-@RequestMapping("/api/v1/phoneImei")
+@RequestMapping("/api/v1/")
 public class PhoneImeiResource {
 
     @Resource
     private PhoneImeiService phoneImeiService;
 
-    @RequestMapping(value = "findAll",method = RequestMethod.GET)
+    @Resource
+    private ArchiveOrderBoxService archiveOrderBoxService;
+
+    @RequestMapping(value = "phoneImei/findAll",method = RequestMethod.GET)
     public List<PhoneImei> findAll() {
         List<PhoneImei> phoneImeis = phoneImeiService.findAll();
         return phoneImeis;
     }
 
-    @RequestMapping(value = "findById",method = RequestMethod.GET)
+    @RequestMapping(value = "phoneImei/findById",method = RequestMethod.GET)
     public PhoneImei findById(Long id) {
         PhoneImei phoneImei = phoneImeiService.findById(id);
         return phoneImei;
+    }
+
+    @RequestMapping(value = "orderBox/findAll",method = RequestMethod.GET)
+    public List<ArchiveOrderBox> findAllBox() {
+        return archiveOrderBoxService.findAll();
     }
 }

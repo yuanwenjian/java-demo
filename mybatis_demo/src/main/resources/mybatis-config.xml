@@ -18,9 +18,9 @@
     <settings>
         <setting name="mapUnderscoreToCamelCase" value="true"/>
     </settings>
-    <typeAliases>
-        <package name="com.yuanwj.mybatisdemo.model"/>
-    </typeAliases>
+    <!--<typeAliases>-->
+        <!--<package name="com.yuanwj.mybatisdemo.model"/>-->
+    <!--</typeAliases>-->
 
     <!--<mappers>-->
 
