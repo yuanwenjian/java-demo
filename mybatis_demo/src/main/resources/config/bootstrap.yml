@@ -1,4 +1,6 @@
 spring:
+    application:
+        name: mybatis-demo
     datasource:
         master:
             url: jdbc:mysql://192.168.1.58:3306/edb_a20000?useSSL=false
@@ -22,4 +24,12 @@ spring:
 #    mapper-locations: classpath:mapper/**/*.xml
 
 server:
-    port: 8081
+    port: 8083
+eureka:
+    instance:
+        hostname: localhost
+        metadataMap:
+            instanceId: ${spring.application.name}:${random.value}
+    client:
+        service-url:
+            defaultZone: http://192.168.50.150:8081/eureka,http://192.168.50.150:8082/eureka
