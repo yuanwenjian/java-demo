@@ -1,28 +1,36 @@
-spring:
-    application:
-        name: mybatis-demo
-    cloud:
-        config:
-            uri: http://localhost:8087
-
 #spring:
 #    application:
 #        name: mybatis-demo
-#    datasource:
-#        master:
+#    cloud:
+#        config:
+#            uri: http://localhost:8087
+
+spring:
+    application:
+        name: mybatis-demo
+    datasource:
+        master:
+            url: jdbc:mysql://localhost:3306/edb_a20000?useSSL=false
 #            url: jdbc:mysql://192.168.1.58:3306/edb_a20000?useSSL=false
-#            username: root
-#            password: Server-wms654321
-#        slave:
-#            url: jdbc:mysql://192.168.1.58:3306/edb_b20000?useSSL=false
-#            username: root
-#            password: Server-wms654321
-#
-#    redis:
+            username: root
+            password: 123456
+        slave:
+            url: jdbc:mysql://localhost:3306/edb_b20000?useSSL=false
+            username: root
+            password: 123456
+
+    redis:
+        cluster:
+            nodes: localhost:6379,localhost:6380,localhost:6381,localhost:6382,localhost:6383,localhost:6384
+        password: 123456
 #        host: 127.0.0.1
 #        port: 6379
-#        password:
-#
+#        password: 123456
+
+server:
+    port: 8083
+
+
 ##mybatis:
 ##    config-location: classpath:mybatis-config.xml
 ##    type-aliases-package: com.yuanwj.mybatisdemo.model
