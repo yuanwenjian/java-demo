@@ -1,5 +1,6 @@
 package com.yuanwj.mybatisdemo.config;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import springfox.documentation.service.ApiInfo;
@@ -8,6 +9,8 @@ import springfox.documentation.spring.web.plugins.Docket;
 import springfox.documentation.service.Contact;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
+
+import javax.annotation.Resource;
 
 import static springfox.documentation.builders.PathSelectors.regex;
 
@@ -21,6 +24,9 @@ import static springfox.documentation.builders.PathSelectors.regex;
 @EnableSwagger2
 public class SwaggerConfig {
 
+    @Resource
+    private ApplicationConfig applicationConfig;
+
     @Bean
     public Docket getDocket(){
         Docket docket=new Docket(DocumentationType.SWAGGER_2)
@@ -33,10 +39,10 @@ public class SwaggerConfig {
 
     public ApiInfo apiInfo(){
         ApiInfo apiInfo=new ApiInfo(
-                "mybatis-demo api document ",
-                "springboot与mybatis学习",
-                "0.1",
-                "http://www.centaur.cn/html/products/p5/78.html",
+                applicationConfig.getSwagger().getTitle(),
+                applicationConfig.getSwagger().getDescription(),
+                applicationConfig.getSwagger().getVersion(),
+                applicationConfig.getSwagger().getServiceUrl(),
                 contact(),
                 "",""
                 );
@@ -44,7 +50,8 @@ public class SwaggerConfig {
     }
 
     public Contact contact(){
-        Contact contact=new Contact("yuanwj","yuanwj0929@gamil.com","");
+        Contact contact=new Contact(applicationConfig.getSwagger().getName(),
+                applicationConfig.getSwagger().getServiceUrl(),applicationConfig.getSwagger().getEmail());
         return contact;
     }
 }

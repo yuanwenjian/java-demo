@@ -53,7 +53,6 @@ public class PhoneImeiResource {
         HashOperations hashOperations = redisTemplate.opsForHash();
         ListOperations<String,PhoneImei> listOperations = redisTemplate.opsForList();
 
-        redisTemplate.delete("phoneImeis");
 //        listOperations.leftPushAll("phoneImeis", phoneImeis);
         Jackson2HashMapper hashMapper = new Jackson2HashMapper(false);
         for (PhoneImei phoneImei : phoneImeis) {
@@ -61,8 +60,9 @@ public class PhoneImeiResource {
 //            PhoneImei imei = (PhoneImei) hashMapper.fromHash(entries);
 //            System.out.println(imei);
 //            redisTemplate.delete("yuanwj:phoneImei:" + phoneImei.getImeiId());
-//            Map<String,Object> map = hashMapper.toHash(phoneImei);
-//            hashOperations.putAll("yuanwj:phoneImei:"+phoneImei.getImeiId(),map);
+            Map<String,Object> map = hashMapper.toHash(phoneImei);
+            redisTemplate.expire("yuanwj:phoneImei:resource:" + phoneImei.getImeiId(), 3, TimeUnit.MINUTES);
+            hashOperations.putAll("yuanwj:phoneImei:resource:"+phoneImei.getImeiId(),map);
         }
 
         return phoneImeis;
