@@ -23,4 +23,13 @@
         SELECT * FROM wms_phone_imei
     </select>
 
+    <select id="findByCondition"
+            parameterType="com.yuanwj.mybatisdemo.common.MapperCondition"
+            resultType="com.yuanwj.mybatisdemo.model.PhoneImei">
+        SELECT * FROM wms_phone_imei
+        <if test="_parameter!=null">
+            <include refid="com.yuanwj.mybatismapper.common.mapperCondition"></include>
+        </if>
+
+    </select>
 </mapper>

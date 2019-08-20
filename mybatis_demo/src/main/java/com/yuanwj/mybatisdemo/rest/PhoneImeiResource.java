@@ -72,14 +72,14 @@ public class PhoneImeiResource {
     @RequestMapping(value = "phoneImei/findById",method = RequestMethod.GET)
     public PhoneImei findById(Long id) {
 
-//        PhoneImei phoneImei = phoneImeiService.findById(id);
-        String redisKey = "yuanwj:phoneImei:" + id;
-        BoundHashOperations hashOperations = redisTemplate.boundHashOps(redisKey);
-        Map entries = hashOperations.entries();
-        ValueOperations valueOperations = redisTemplate.opsForValue();
-        Jackson2HashMapper hashMapper = new Jackson2HashMapper(false);
-        PhoneImei imei = (PhoneImei) hashMapper.fromHash(entries);
-        return imei;
+        PhoneImei phoneImei = phoneImeiService.findById(id);
+//        String redisKey = "yuanwj:phoneImei:" + id;
+//        BoundHashOperations hashOperations = redisTemplate.boundHashOps(redisKey);
+//        Map entries = hashOperations.entries();
+//        ValueOperations valueOperations = redisTemplate.opsForValue();
+//        Jackson2HashMapper hashMapper = new Jackson2HashMapper(false);
+//        PhoneImei imei = (PhoneImei) hashMapper.fromHash(entries);
+        return phoneImei;
 //        return phoneImei;
     }
 

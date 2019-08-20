@@ -1,5 +1,6 @@
 package com.yuanwj.mybatisdemo.mapper;
 
+import com.yuanwj.mybatisdemo.common.MapperCondition;
 import com.yuanwj.mybatisdemo.model.PhoneImei;
 import org.apache.ibatis.annotations.Mapper;
 
@@ -16,4 +17,6 @@ public interface PhoneImerMapper {
     PhoneImei findById(Long imeiId);
 
     List<PhoneImei> findAll();
+
+    List<PhoneImei> findByCondition(MapperCondition condition);
 }

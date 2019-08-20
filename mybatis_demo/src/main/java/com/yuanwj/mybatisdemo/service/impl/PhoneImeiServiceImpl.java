@@ -1,5 +1,7 @@
 package com.yuanwj.mybatisdemo.service.impl;
 
+import com.yuanwj.mybatisdemo.common.Criteria;
+import com.yuanwj.mybatisdemo.common.MapperCondition;
 import com.yuanwj.mybatisdemo.mapper.PhoneImerMapper;
 import com.yuanwj.mybatisdemo.model.PhoneImei;
 import com.yuanwj.mybatisdemo.service.PhoneImeiService;
@@ -35,10 +37,11 @@ public class PhoneImeiServiceImpl implements PhoneImeiService {
 
     @Override
     public PhoneImei findById(Long id) {
-        PhoneImei phoneImei = phoneImerMapper.findById(id);
-        template.opsForList().leftPush(phoneImei.getImeiId() + "", phoneImei);
-        PhoneImei imei = (PhoneImei) template.opsForList().leftPop(phoneImei.getImeiId() + "");
-        System.out.println(imei.getImeiId());
-        return phoneImei;
+        MapperCondition mapperCondition = new MapperCondition();
+        Criteria criteria = mapperCondition.createCriteria(PhoneImei.class);
+        criteria.andEuqal("imeiId", id);
+        criteria.andEuqal("tenantId", 50001);
+        List<PhoneImei> phoneImeis = phoneImerMapper.findByCondition(mapperCondition);
+        return phoneImeis.get(0);
     }
 }
